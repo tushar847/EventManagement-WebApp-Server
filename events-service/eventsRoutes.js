@@ -34,7 +34,7 @@ eventServiceRoutes.get('/', async (req, res) => {
     logger.info("Request recieved at point 'events/'");
     try {
         let param = {
-            currentTime: 200
+            currentTime: Date.now()
         };
         let query = mapper.getStatement('eventQueries', 'fetchAllEvents', param, format);
         const events = await db.query(query);
@@ -51,7 +51,7 @@ eventServiceRoutes.get('/:eventId', eventIdValidator, async (req, res) => {
     try {
         let param = {
             eventId: req.params.eventId,
-            currentTime: 200
+            currentTime: Date.now()
         };
         let query = mapper.getStatement('eventQueries', 'fetchEventById', param, format);
         const events = await db.query(query);
@@ -63,11 +63,11 @@ eventServiceRoutes.get('/:eventId', eventIdValidator, async (req, res) => {
 });
 
 // Read with isCompleted
-eventServiceRoutes.get('/all', async (req, res) => {
-    logger.info("Request recieved at point 'events/'");
+eventServiceRoutes.get('/v2/all', async (req, res) => {
+    logger.info("Request recieved at point 'events/v2/all'");
     try {
         let param = {
-            currentTime: 200
+            currentTime: Date.now()
         };
         let query = mapper.getStatement('eventQueries', 'fetchAllEvents2', param, format);
         const events = await db.query(query);
@@ -78,12 +78,12 @@ eventServiceRoutes.get('/all', async (req, res) => {
     }
 });
 
-eventServiceRoutes.get('/all/:eventId', eventIdValidator, async (req, res) => {
-    logger.info("Request recieved at point 'events/id'");
+eventServiceRoutes.get('/v2/all/:eventId', eventIdValidator, async (req, res) => {
+    logger.info("Request recieved at point 'events/v2/all/id'");
     try {
         let param = {
             eventId: req.params.eventId,
-            currentTime: 200
+            currentTime: Date.now()
         };
         let query = mapper.getStatement('eventQueries', 'fetchEventById2', param, format);
         const events = await db.query(query);

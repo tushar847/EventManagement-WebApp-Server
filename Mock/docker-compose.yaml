@@ -32,7 +32,11 @@ services:
     image: sjb/exp
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: 10.5.0.6
+      DB_USER_NAME:  admin
+      DB_PASSWORD: root
+      DB_HOST: 10.5.0.5
+      DB_NAME: admin
+      DB_PORT: 5432
     ports:
       - "3030:3000"
     networks:

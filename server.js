@@ -9,9 +9,15 @@ const dbClient = require('./db/client');
 logger.info("Intializing Server");
 connectToDb();
 app.use(express.json());
+
+app.get("/healthCheck",(req,res) => {
+    res.status(200).json("lub  dub");
+})
+
 app.use('/events', eventServiceRoutes);
 app.listen(3000 , () => { 
     logger.info("Server Started");
+    console.log("Server Started");
 });
 
 function connectToDb() {

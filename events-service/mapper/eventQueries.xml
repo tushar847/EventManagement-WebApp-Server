@@ -11,11 +11,11 @@
   </select>
 
   <select id="fetchAllEvents2">
-    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} < events.start_time - 600000) as isUpcoming from events;
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} between 0  and events.start_time - 600000) as isUpcoming from events;
   </select>
 
   <select id="fetchEventById2">
-    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive,(${currentTime} > events.start_time + events.duration) as isUpcoming from events where id =${eventId} ;
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} between 0 and events.start_time - 600000) as isUpcoming from events where id =${eventId} ;
   </select>
 
   <select id="addEvent">
