@@ -10,6 +10,12 @@ Following are the steps to run the project locally without any installing, the o
 We can run the following command to check if any container is running and also verify if docker is running or not.
 
 ```bash
+docker ps
+```
+
+Sample output
+
+```bash
 PS C:\Users\Tushar> docker ps
 CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                           NAMES
 268b79893558   postgres         "docker-entrypoint.s…"   24 minutes ago   Up 24 minutes   0.0.0.0:5432->5432/tcp          pg_container
@@ -22,6 +28,12 @@ eb156d43fc4d   sjb/exp          "docker-entrypoint.s…"   24 minutes ago   Up 2
 We run the following command to check the networks available.
 
 ```bash
+docker network ls
+```
+
+Sample output
+
+```bash
 PS C:\Users\Tushar> docker network ls
 NETWORK ID     NAME        DRIVER    SCOPE
 1b068dc9c1d2   bridge      bridge    local
@@ -29,6 +41,12 @@ NETWORK ID     NAME        DRIVER    SCOPE
 ```
 
 we will create a new network using the following command
+
+```bash
+docker network create -d bridge events
+```
+
+Sample output
 
 ```bash
 PS C:\Users\Tushar> docker network create -d bridge events
@@ -48,12 +66,24 @@ NETWORK ID     NAME        DRIVER    SCOPE
 Run the following command to make docker image.
 
 ```bash
+docker build . -t sjb/exp
+```
+
+Sample run with directory reference
+
+```bash
 PS C:\Users\Tushar\Desktop\Project\EventManagement-WebApp-Server> docker build . -t sjb/exp
 ```
 
 ## Step - 4 - Docker Compose up
 
 Run the following command to make star the server.
+
+```bash
+ docker compose up -d
+```
+
+Sample run with directory reference
 
 ```bash
 PS C:\Users\Tushar\Desktop\Project\EventManagement-WebApp-Server\Mock> docker compose up -d
@@ -69,7 +99,13 @@ CONTAINER ID   IMAGE            COMMAND                  CREATED              ST
 66a6725fbbcb   sjb/exp          "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:3030->3000/tcp          server_container
 ```
 
-to stop services execute the following command
+to stop services execute the following command from the Mock folder only.
+
+```bash
+docker compose down
+```
+
+Sample run with directory reference
 
 ```bash
 PS C:\Users\Tushar\Desktop\Project\EventManagement-WebApp-Server\Mock> docker compose down
