@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventQueries">
+
+  <select id="fetchAllEvents">
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive from events;
+  </select>
+
+  <select id="fetchEventById">
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive from events where id =${eventId} ;
+  </select>
+
+  <select id="fetchAllEvents2">
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} < events.start_time - 600000) as isUpcoming from events;
+  </select>
+
+  <select id="fetchEventById2">
+    select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive,(${currentTime} > events.start_time + events.duration) as isUpcoming from events where id =${eventId} ;
+  </select>
+
+  <select id="addEvent">
+    insert into events (event_name,start_time,duration) 
+    values (#{eventName},${eventStartTime},${eventDuration});
+  </select>
+
+  <update id="updateEvent">
+    update events set event_name = #{eventName},
+     start_time = ${eventStartTime},
+     duration = ${eventDuration}
+    where id = ${eventId};
+  </update>
+
+  <delete id="deleteEvent">
+    delete from events where id = ${eventId};
+  </delete>
+</mapper>

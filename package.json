@@ -1,0 +1,20 @@
+{
+  "name": "events-server",
+  "version": "1.0.0",
+  "description": "a server for events website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "subhra jyoti baroi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0",
+    "mybatis-mapper": "^0.6.7",
+    "pg": "^8.7.3",
+    "winston": "^3.7.2"
+  }
+}

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    networks:
+      events:
+        ipv4_address: 10.5.0.5
+    volumes:
+      - ./sql-scripts/:/docker-entrypoint-initdb.d
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      events:
+        ipv4_address: 10.5.0.6
+  server:
+    container_name: server_container
+    image: sjb/exp
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 10.5.0.6
+    ports:
+      - "3030:3000"
+    networks:
+      events:
+        ipv4_address: 10.5.0.7
+networks:
+  events:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
