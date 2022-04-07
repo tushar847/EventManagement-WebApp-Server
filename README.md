@@ -77,7 +77,7 @@ PS C:\Users\Tushar\Desktop\Project\EventManagement-WebApp-Server> docker build .
 
 ## Step - 4 - Docker Compose up
 
-Run the following command to make star the server.
+Navigate to the MOCK folder and run the following command to star the server.
 
 ```bash
  docker compose up -d
