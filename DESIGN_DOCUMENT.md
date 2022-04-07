@@ -34,7 +34,7 @@ Following is the snippet of valid request - response
 Request
 {
     "eventName": "event x",
-    "eventStartTime": "x1649233001267",
+    "eventStartTime": 1649233001267,
     "eventDuration": 1200000
 }
 
@@ -233,7 +233,7 @@ Since the above read do not differentiate between already completed events and f
 <aside>
 💡 We are using the following query to calculate if the event is upcoming or live
 
-**select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} < events.start_time - 600000) as isUpcoming from events;**
+**select *,(${currentTime} between events.start_time - 600000 and events.start_time + events.duration) as isLive, (${currentTime} between 0 and events.start_time - 600000) as isUpcoming from events;**
 
 If isLive is true then the event is live else it is upcoming.
 
@@ -242,7 +242,7 @@ If isLive is true then the event is live else it is upcoming.
 End Point
 
 ```json
-GET http://localhost:3030/eventsAll
+GET http://localhost:3030/events/v2/all
 ```
 
 Request
@@ -282,7 +282,7 @@ Following is the expected request and response for reading entry based on eventI
 End Point
 
 ```json
-GET http://localhost:3030/eventsAll/1
+GET http://localhost:3030/events/v2/all/1
 ```
 
 Request
